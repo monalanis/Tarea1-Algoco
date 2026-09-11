@@ -1,0 +1,19 @@
+Para garantizar la repetibilidad de los resultados, los experimentos fueron ejecutados en una máquina local con las siguientes especificaciones técnicas:
+
+\begin{itemize}
+    \item \textbf{Procesador:} Intel Core i5-12450H @ 2.50GHz
+    \item \textbf{Memoria RAM:} 16 GB
+    \item \textbf{Sistema Operativo:} Windows 11 Home Single Language
+    \item \textbf{Compilador:} GCC 13.3.0 (g++ en entorno Ubuntu/WSL)
+    \item \textbf{Estándar de C++:} C++17
+\end{itemize}
+
+\subsection*{Métricas y Herramientas}
+Para el análisis práctico de la tarea, se evaluaron dos métricas fundamentales, el tiempo de ejecución, que fue medido en microsegundos utilizando \texttt{std::chrono::steady\_clock} de la librería estándar \texttt{<chrono>} de C++ (para garantizar mediciones monotónicas y evadir desajustes del sistema operativo), y el consumo máximo, medido en KB mediante la captura del \textit{Peak Working Set} a través de la API nativa del sistema operativo. La generación de los gráficos de rendimiento se realizó mediante scripts en Python, utilizando las librerías \texttt{pandas} y \texttt{matplotlib}.
+
+\subsection*{Conjuntos de Datos (Datasets)}
+Los conjuntos de datos utilizados para las pruebas se generaron de acuerdo con las especificaciones de la tarea:
+\begin{itemize}
+    \item \textbf{Ordenamiento de Arreglos:} Se utilizaron arreglos unidimensionales de múltiples tamaños ($n$). Para observar el comportamiento de los algoritmos en distintos escenarios, los arreglos se generaron bajo tres distribuciones iniciales, ordenada aleatoriamente, ordenada ascendentemente y ordenada descendentemente.
+    \item \textbf{Multiplicación de Matrices:} Se emplearon matrices cuadradas de dimensiones $n \times n$ pobladas con valores enteros aparentemente aleatorios. Para la ejecución del algoritmo de Strassen, se implementó dinámicamente un relleno de ceros (\textit{padding}) en los casos donde la dimensión $n$ no correspondía a una potencia exacta de dos, garantizando así la correcta división del problema.
+\end{itemize}
