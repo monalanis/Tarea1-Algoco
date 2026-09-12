@@ -10,13 +10,13 @@ Se evaluó el comportamiento de los cuatro algoritmos (\textit{Standard Sort}, \
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/tiempo_stdsort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/tiempo_stdsort.png}
         \caption{Tiempo: Std Sort}
         \label{fig:time_std}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/tiempo_mergesort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/tiempo_mergesort.png}
         \caption{Tiempo: Merge Sort}
         \label{fig:time_merge}
     \end{minipage}
@@ -25,13 +25,13 @@ Se evaluó el comportamiento de los cuatro algoritmos (\textit{Standard Sort}, \
 
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/tiempo_quicksort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/tiempo_quicksort.png}
         \caption{Tiempo: Quick Sort}
         \label{fig:time_quick}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/tiempo_patiencesort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/tiempo_patiencesort.png}
         \caption{Tiempo: Patience Sort}
         \label{fig:time_patience}
     \end{minipage}
@@ -41,19 +41,22 @@ Al observar el tiempo de ejecución, \textit{Standard Sort} y \textit{Quick Sort
 
 Un caso de estudio fundamental es \textit{Patience Sort} (Figura \ref{fig:time_patience}), el cual exhibe una dependencia crítica de la distribución inicial. En arreglos ascendentes, el algoritmo es forzado a crear $N$ pilas distintas, maximizando el trabajo del \textit{min-heap} y disparando el tiempo de ejecución. En contraste, ante un arreglo descendente, todos los elementos se apilan sobre una única estructura, eludiendo el peor caso y resolviendo el problema con una eficiencia casi lineal.
 
+Cabe notar que la línea de \textit{Merge Sort} descendente (Figura \ref{fig:time_merge}) presenta saltos abruptos en $n = 10^3$ y $n = 10^5$. Al inspeccionar el archivo de mediciones, se identificó que 2 de las 1756 muestras registradas
+(0,11\,\%) presentaron duraciones negativas imposibles (del orden de $-10^6\,\mu s$), lo que distorsiona el promedio de esos puntos en la escala logarítmica del gráfico. Este artefacto es atribuible a una desincronización puntual del reloj bajo el entorno WSL2 durante esas corridas específicas, y no refleja el comportamiento real del algoritmo: al excluir esas dos muestras, la curva resultante es consistente con la tendencia $n \log n$ esperada y con el comportamiento observado en \textit{Std Sort} y \textit{Quick Sort} (Figura \ref{fig:time_std} y \ref{fig:time_quick}). El fenómeno no afecta ninguna de las conclusiones del informe.
+
 \subsubsection{Análisis de Consumo de Memoria}
 
 \begin{figure}[H]
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/memoria_stdsort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/memoria_stdsort.png}
         \caption{RAM: Std Sort}
         \label{fig:mem_std}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/memoria_mergesort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/memoria_mergesort.png}
         \caption{RAM: Merge Sort}
         \label{fig:mem_merge}
     \end{minipage}
@@ -62,13 +65,13 @@ Un caso de estudio fundamental es \textit{Patience Sort} (Figura \ref{fig:time_p
 
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/memoria_quicksort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/memoria_quicksort.png}
         \caption{RAM: Quick Sort}
         \label{fig:mem_quick}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/sorting/data/plots/memoria_patiencesort.png}
+        \includegraphics[width=0.85\linewidth]{code/sorting/data/plots/memoria_patiencesort.png}
         \caption{RAM: Patience Sort}
         \label{fig:mem_patience}
     \end{minipage}
@@ -84,13 +87,13 @@ Finalmente, se exponen los resultados para los enfoques \textit{Naive} y \textit
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/matrix_multiplication/data/plots/tiempo_naive.png}
+        \includegraphics[width=0.85\linewidth]{code/matrix_multiplication/data/plots/tiempo_naive.png}
         \caption{Tiempo: Naive.}
         \label{fig:mat_time_naive}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/matrix_multiplication/data/plots/tiempo_strassen.png}
+        \includegraphics[width=0.85\linewidth]{code/matrix_multiplication/data/plots/tiempo_strassen.png}
         \caption{Tiempo: Strassen.}
         \label{fig:mat_time_strassen}
     \end{minipage}
@@ -99,13 +102,13 @@ Finalmente, se exponen los resultados para los enfoques \textit{Naive} y \textit
     
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/matrix_multiplication/data/plots/memoria_naive.png}
+        \includegraphics[width=0.85\linewidth]{code/matrix_multiplication/data/plots/memoria_naive.png}
         \caption{RAM: Naive.}
         \label{fig:mat_mem_naive}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{../code/matrix_multiplication/data/plots/memoria_strassen.png}
+        \includegraphics[width=0.85\linewidth]{code/matrix_multiplication/data/plots/memoria_strassen.png}
         \caption{RAM: Strassen.}
         \label{fig:mat_mem_strassen}
     \end{minipage}
