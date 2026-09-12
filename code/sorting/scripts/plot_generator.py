@@ -1,7 +1,7 @@
 """
 Descripción: Script para automatizar la generación de gráficos de rendimiento 
 (tiempo de ejecución y peak de memoria) de los algoritmos de ordenamiento.
-Se separan los resurltados según la distribución inicial de los arreglos 
+Se separan los resultados según la distribución inicial de los arreglos 
 (aleatoria, ascendente, descendente).
 """
 
@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 import os
 import gc
 
-ruta_csv = '../data/measurements/sorting_results.csv'
-ruta_plots = '../data/plots'
+ruta_csv = 'data/measurements/sorting_results.csv'
+ruta_plots = 'data/plots'
 
 os.makedirs(ruta_plots, exist_ok=True)
 
