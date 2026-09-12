@@ -1,33 +1,77 @@
-# TAREA 1 INF221 2026-1
+# Documentación y Guía de Ejecución
 
-## Consideraciones
-Como el ayudante aclaró que se podían borrar los array_outpot y array_input por temas de espacio en el .zip, los borré porque no me dejaba añadir la tarea al aula.
+## Entrega
+La entrega se realiza vía **aula.usm.cl** en formato `.zip`.
 
-Aparte de eso, los iba a subir al git, pero pesaban mucho y no me dejaba subir archivos tan pesados al git, si llegaran a requerir aquellos archivos, los tengo en mi pc :)
-## Estructura del Repositorio
+---
 
-Este repositorio contiene la documentación, el código fuente y las instrucciones necesarias para la realización de la Tarea 1 de la asignatura *INF221 Algoritmos y Complejidad*.
+## 1. Multiplicación de Matrices
 
-**Entrega:** archivo `.zip` vía aula.usm.cl
-
-A continuación, se describe la estructura del repositorio:
+Todos los archivos relacionados con este problema se encuentran dentro de la carpeta `code/matrix_multiplication/`. Para probar el código, primero debe navegar a ese directorio desde la terminal:
 
 ```bash
-├── assignment_statement
-├── code
-├── report
-└── README.md
+cd code/matrix_multiplication/
+
+### Generación de Datos de Prueba
+Se deben generar los archivos ejecutando el script de python estrcitamente desde dentro de la carpeta scripts/
+
+cd scripts/
+python3 matrix_generator.py
+cd ..
+
+### Programa Principal(Compilación)
+Regresando a code/matrix_multiplication/ utiliza el makefile
+
+    make clean
+    make
 ```
 
-### `assignment_statement`
-Contiene el enunciado de la tarea, así como los archivos fuente del enunciado en formato LaTeX (.tex).
+## Ejecución de Pruebas
+Esta implementación aísla el proceso en el sistema operativo mediante un bucle bash. Si los algoritmos se ejecutaran secuencialmente en un mismo flujo, la alta carga de memoria dinámica y recursividad del algoritmo de Strassen establecería un peak histórico de RAM que oculta el bajo consumo del algoritmo Naive.
 
-### `code`
-Contiene la plantilla de los archivos que deberán estar presentes en la entrega de la tarea. En ella, se deben implementar los algoritmos solicitados, los cuales se detallan a continuación:
-- `matrix_multiplication`: Algoritmo de Strassen y versión Naive.
-- `sorting`: std::sort, merge sort, quick sort, patience sort.
+for archivo in data/matrix_input/*_1.txt; do
+    base=$(basename "$archivo" _1.txt)
+    for alg in naive strassen; do
+        ./matrix_multiplication "$base" "$alg"
+    done
+done
 
-### `report`
-En esta carpeta se encuentra la plantilla en LaTeX para la elaboración del mini-informe correspondiente a la tarea.
+## Generación de Gráficos
 
-***Para obtener información más detallada sobre el contenido de cada carpeta, se recomienda revisar los archivos README ubicados dentro de ellas.***
+python3 scripts/plot_generator.py
+
+
+### Ordenamiento de arreglo unidimensional
+Todos los archivos relacionados con este problema se encuentran dentro de la carpeta `code/sorting/`. Para probar el código, primero debe navegar a ese directorio desde la terminal:
+
+```bash
+cd code/sorting/
+
+
+### Generación de Datos de Prueba (SORTING)
+Los arreglos con distintas distribuciones deben ser generados antes de ejecutar las pruebas. Ejecuta el script estrictamente desde la carpeta scripts/
+
+cd scripts/
+python3 array_generator.py
+cd ..
+
+### Programa principal (Compilación)
+Regresando a code/sorting/ utilice el makefile
+
+make clean
+make
+```
+
+### Ejecución de Pruebas
+Al igual que las matrices, esta implementación aísla los procesos para que la API nativa del sistema operativo mida correctamente el peak histórico de memoria RAM sin que el consumo estructural de un algoritmo (como MergeSort) enmascare a los algortimos in-place  (como QuickSort)
+
+for archivo in data/array_input/*.txt; do
+    for alg in stdsort mergesort quicksort patiencesort; do
+        ./sorting "$archivo" "$alg"
+    done
+done
+
+### Generación de Gráficos
+Genere los graficos desde el directorio raíz del problema
+
+python3 scripts/plot_generator.py
